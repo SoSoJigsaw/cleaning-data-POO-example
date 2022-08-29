@@ -1,13 +1,17 @@
 import numpy as np
 import pandas as pd
+import sqlalchemy
+from sqlalchemy import create_engine
+import psycopg2
+
 
 # Leitura dos dataframes pelo pandas
 df = pd.read_csv(r'/home/sobral/Downloads/2022/INMET_SE_ES_A612_VITORIA_01-01-2022_A_30-06-2022.CSV',
-                 sep=';', encoding='latin-1', on_bad_lines='skip')
+                 sep=';', encoding='latin-1', on_bad_lines='skip', header=None)
 df1 = pd.read_csv(r'/home/sobral/Downloads/2022/INMET_SE_ES_A612_VITORIA_01-01-2022_A_30-06-2022.CSV',
                   sep=';', encoding='latin-1', skiprows=[0, 1, 2, 3, 4, 5, 6, 7], on_bad_lines='skip')
 
-# Criando a coluna do código WMO
+# Criando a colunas do cabeçalho vertical
 df['CODIGO (WMO)'] = df.loc[2][1]
 
 # Dando merge nos dataframes
@@ -72,4 +76,6 @@ df.replace(r'^\s*$', np.nan, regex=True)
 
 # Config para visualizar todas as colunas
 pd.set_option('display.max_columns', None)
-print(df.head(30))
+
+#print(df.head(30))
+
