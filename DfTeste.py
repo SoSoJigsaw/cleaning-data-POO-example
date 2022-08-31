@@ -6,9 +6,9 @@ import psycopg2
 
 
 # Leitura dos dataframes pelo pandas
-df = pd.read_csv(r'/home/sobral/Downloads/2022/INMET_SE_ES_A612_VITORIA_01-01-2022_A_30-06-2022.CSV',
-                 sep=';', encoding='latin-1', on_bad_lines='skip', header=None)
-df1 = pd.read_csv(r'/home/sobral/Downloads/2022/INMET_SE_ES_A612_VITORIA_01-01-2022_A_30-06-2022.CSV',
+df = pd.read_csv(r'C:\Users\Felipe Sobral\Downloads\Dfs 2022\INMET_SE_ES_A612_VITORIA_01-01-2022_A_30-06-2022.CSV',
+                 sep=';', encoding='latin-1', on_bad_lines='skip')
+df1 = pd.read_csv(r'C:\Users\Felipe Sobral\Downloads\Dfs 2022\INMET_SE_ES_A612_VITORIA_01-01-2022_A_30-06-2022.CSV',
                   sep=';', encoding='latin-1', skiprows=[0, 1, 2, 3, 4, 5, 6, 7], on_bad_lines='skip')
 
 # Criando a colunas do cabeçalho vertical
@@ -20,6 +20,398 @@ del df1
 
 # Apagando as linhas duplicadas
 df = df.drop_duplicates(subset=['Data', 'Hora UTC'], keep='first')
+
+# Resolvendo o problema dos números que começam com vírgula
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',9')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,9'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',8')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,8'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',7')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,7'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',6')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,6'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',5')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,5'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',4')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,4'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',3')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,3'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',2')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,2'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',1')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0,1'
+
+mask = (df['PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] == ',0')
+df.loc[mask, 'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)'] = '0'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',9')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,9'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',8')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,8'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',7')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,7'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',6')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,6'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',5')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,5'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',4')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,4'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',3')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,3'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',2')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,2'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',1')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0,1'
+
+mask = (df['VENTO, VELOCIDADE HORARIA (m/s)'] == ',0')
+df.loc[mask, 'VENTO, VELOCIDADE HORARIA (m/s)'] = '0'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',9')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,9'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',8')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,8'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',7')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,7'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',6')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,6'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',5')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,5'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',4')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,4'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',3')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,3'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',2')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,2'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',1')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0,1'
+
+mask = (df['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] == ',0')
+df.loc[mask, 'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)'] = '0'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',9')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,9'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',8')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,8'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',7')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,7'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',6')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,6'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',5')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,5'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',4')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,4'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',3')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,3'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',2')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,2'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',1')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0,1'
+
+mask = (df['PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] == ',0')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MAX.NA HORA ANT. (AUT) (mB)'] = '0'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',9')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,9'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',8')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,8'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',7')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,7'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',6')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,6'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',5')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,5'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',4')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,4'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',3')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,3'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',2')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,2'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',1')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0,1'
+
+mask = (df['PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] == ',0')
+df.loc[mask, 'PRESSÃO ATMOSFERICA MIN. NA HORA ANT. (AUT) (mB)'] = '0'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',9')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,9'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',8')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,8'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',7')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,7'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',6')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,6'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',5')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,5'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',4')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,4'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',3')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,3'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',2')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,2'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',1')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0,1'
+
+mask = (df['RADIACAO GLOBAL (Kj/m²)'] == ',0')
+df.loc[mask, 'RADIACAO GLOBAL (Kj/m²)'] = '0'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',9')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,9'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',8')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,8'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',7')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,7'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',6')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,6'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',5')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,5'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',4')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,4'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',3')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,3'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',2')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,2'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',1')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0,1'
+
+mask = (df['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] == ',0')
+df.loc[mask, 'TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)'] = '0'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',9')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,9'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',8')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,8'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',7')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,7'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',6')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,6'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',5')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,5'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',4')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,4'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',3')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,3'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',2')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,2'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',1')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0,1'
+
+mask = (df['TEMPERATURA DO PONTO DE ORVALHO (°C)'] == ',0')
+df.loc[mask, 'TEMPERATURA DO PONTO DE ORVALHO (°C)'] = '0'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',9')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,9'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',8')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,8'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',7')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,7'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',6')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,6'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',5')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,5'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',4')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,4'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',3')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,3'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',2')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,2'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',1')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0,1'
+
+mask = (df['TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] == ',0')
+df.loc[mask, 'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)'] = '0'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',9')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,9'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',8')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,8'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',7')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,7'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',6')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,6'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',5')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,5'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',4')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,4'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',3')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,3'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',2')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,2'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',1')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0,1'
+
+mask = (df['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] == ',0')
+df.loc[mask, 'TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)'] = '0'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',9')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,9'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',8')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,8'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',7')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,7'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',6')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,6'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',5')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,5'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',4')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,4'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',3')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,3'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',2')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,2'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',1')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0,1'
+
+mask = (df['TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] == ',0')
+df.loc[mask, 'TEMPERATURA ORVALHO MAX. NA HORA ANT. (AUT) (°C)'] = '0'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',9')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,9'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',8')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,8'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',7')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,7'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',6')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,6'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',5')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,5'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',4')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,4'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',3')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,3'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',2')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,2'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',1')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0,1'
+
+mask = (df['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] == ',0')
+df.loc[mask, 'TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)'] = '0'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',9')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,9'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',8')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,8'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',7')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,7'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',6')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,6'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',5')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,5'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',4')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,4'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',3')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,3'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',2')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,2'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',1')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0,1'
+
+mask = (df['VENTO, RAJADA MAXIMA (m/s)'] == ',0')
+df.loc[mask, 'VENTO, RAJADA MAXIMA (m/s)'] = '0'
+
 
 # Ajustando Data ao padrão Br
 df['Data'] = pd.to_datetime(df['Data'], errors='coerce')
@@ -77,5 +469,5 @@ df.replace(r'^\s*$', np.nan, regex=True)
 # Config para visualizar todas as colunas
 pd.set_option('display.max_columns', None)
 
-#print(df.head(30))
+print(df.head(30))
 

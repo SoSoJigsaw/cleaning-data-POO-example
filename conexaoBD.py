@@ -25,16 +25,6 @@ def povoar_banco(df):
             print('Erro de integridade')
             pass
         try:
-            db.execute(f"INSERT INTO ESTACAO (codigo_wmo, estacao_nome, estacao_regiao, estacao_estado, "
-                       f"estacao_longitude, estacao_altitude, estacao_latitude, estacao_status) VALUES "
-                       f"('{row['CODIGO (WMO)']}', '{row['']}', "
-                       f"'{row['']}', '{row['']}',"
-                       f"'{row['']}', '{row['']}',"
-                       f"'{row['']}', '{row['']}')")
-        except sqlalchemy.exc.IntegrityError:
-            print('Erro de integridade')
-            pass
-        try:
             db.execute(f"INSERT INTO PRESSAO_ATMOSFERICA (pressao_atm_estacao, pressao_atm_max, "
                        f"pressao_atm_min, datahora_captacao) VALUES "
                        f"('{row['PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)']}', "
@@ -69,6 +59,24 @@ def povoar_banco(df):
                        f"'{row['TEMPERATURA ORVALHO MIN. NA HORA ANT. (AUT) (°C)']}', "
                        f"'{row['TEMPERATURA MÍNIMA NA HORA ANT. (AUT) (°C)']}', "
                        f"'{row['TEMPERATURA DO AR - BULBO SECO, HORARIA (°C)']}')")
+        except sqlalchemy.exc.IntegrityError:
+            print('Erro de integridade')
+            pass
+
+
+def estacao_banco(df):
+
+    # Conectando ao banco de dados
+    db = create_engine('postgresql://sobral:123456@[localhost]/IACIT')
+
+    for index, row in df.iterrows():
+        try:
+            db.execute(f"INSERT INTO ESTACAO (codigo_wmo, estacao_nome, estacao_regiao, estacao_estado, "
+                       f"estacao_longitude, estacao_altitude, estacao_latitude, estacao_status) VALUES "
+                       f"('{row['CODIGO (WMO)']}', '{row['ESTACAO']}', "
+                       f"'{row['REGIAO']}', '{row['UF']}',"
+                       f"'{row['LONGITUDE']}', '{row['ALTITUDE']}',"
+                       f"'{row['LATITUDE']}', '{row['']}')")
         except sqlalchemy.exc.IntegrityError:
             print('Erro de integridade')
             pass
