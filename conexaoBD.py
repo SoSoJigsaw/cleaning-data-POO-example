@@ -10,11 +10,11 @@ def povoar_banco(df):
 
     # Inserindo os dados no banco de dados
     for index, row in df.iterrows():
-        try:
+        if db.execute(f"select exists(select 1 from RADIACAO_GLOBAL where cod_wmo='{row['CODIGO (WMO)']}' "
+                      f"and datahora_captacao='{row['DATAHORA DE CAPTAÇÃO']}')").scalar() == False:
             db.execute(f"INSERT INTO RADIACAO_GLOBAL (radiacao_global, datahora_captacao) VALUES "
                        f"('{row['RADIACAO GLOBAL (Kj/m²)']}', '{row['DATAHORA DE CAPTAÇÃO']}')")
-        except sqlalchemy.exc.IntegrityError:
-            print('Erro de integridade')
+        else:
             pass
         try:
             db.execute(f"INSERT INTO VENTO (vento_direcao_horario, vento_rajada_max, datahora_captacao, "

@@ -106,8 +106,8 @@ def leitura_cabecalho2021():
         df = pd.read_csv(f, sep=';', encoding='latin-1', on_bad_lines='skip', header=None)
 
         # Tratamento dos dados e povoamento do banco de dados
-        #estacao_banco(tratamento_cabecalho(df))
-        tratamento_cabecalho(df)
+        estacao_banco(tratamento_cabecalho(df))
+
 
         print(i)
         i += 1
@@ -123,8 +123,8 @@ def leitura_cabecalho2022():
         df = pd.read_csv(f, sep=';', encoding='latin-1', on_bad_lines='skip', header=None)
 
         # Tratamento dos dados e povoamento do banco de dados
-        #estacao_banco(tratamento_cabecalho(df))
-        tratamento_cabecalho(df)
+        estacao_banco(tratamento_cabecalho(df))
+
 
         print(i)
         i += 1
