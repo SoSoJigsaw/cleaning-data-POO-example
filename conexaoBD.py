@@ -67,16 +67,17 @@ def povoar_banco(df):
 def estacao_banco(df):
 
     # Conectando ao banco de dados
-    db = create_engine('postgresql://sobral:123456@[localhost]/IACIT')
+    db = create_engine('postgresql://postgres:123456@[localhost]/db_iacit_api')
 
     for index, row in df.iterrows():
         try:
-            db.execute(f"INSERT INTO ESTACAO (codigo_wmo, estacao_nome, estacao_regiao, estacao_estado, "
-                       f"estacao_longitude, estacao_altitude, estacao_latitude, estacao_status) VALUES "
+            db.execute(f"INSERT INTO estacao (cod_wmo, estacao_nome, estacao_regiao, estacao_estado, "
+                       f"estacao_longitude, estacao_latitude, estacao_altitude, estacao_datafundacao, "
+                       f"estacao_status) VALUES "
                        f"('{row['CODIGO (WMO)']}', '{row['ESTACAO']}', "
-                       f"'{row['REGIAO']}', '{row['UF']}',"
-                       f"'{row['LONGITUDE']}', '{row['ALTITUDE']}',"
-                       f"'{row['LATITUDE']}', '{row['']}')")
+                       f"'{row['REGIAO']}', '{row['UF']}', "
+                       f"{row['LONGITUDE']}, {row['LATITUDE']}, {row['ALTITUDE']}, "
+                       f"'{row['DATA DE FUNDACAO']}', 'A')")
         except sqlalchemy.exc.IntegrityError:
             print('Erro de integridade')
             pass

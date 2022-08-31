@@ -90,8 +90,7 @@ def leitura_cabecalho2020():
         df = pd.read_csv(f, sep=';', encoding='latin-1', on_bad_lines='skip', header=None)
 
         # Tratamento dos dados e povoamento do banco de dados
-        #estacao_banco(tratamento_cabecalho(df))
-        tratamento_cabecalho(df)
+        estacao_banco(tratamento_cabecalho(df))
 
         print(i)
         i += 1

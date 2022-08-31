@@ -21,6 +21,10 @@ def tratamento_cabecalho(df):
     cols = ["REGIAO", "UF", "ESTACAO", "CODIGO (WMO)", "LATITUDE", "LONGITUDE", "ALTITUDE", "DATA DE FUNDACAO"]
     df[cols] = df[cols].replace({',,,,,,,,,,,,,': ''}, regex=True)
     df[cols] = df[cols].replace({',,,,,,,,,,,,': ''}, regex=True)
+    df[cols] = df[cols].replace({',': '.'}, regex=True)
+
+    # Convertendo a datetime
+    df['DATA DE FUNDACAO'] = pd.to_datetime(df['DATA DE FUNDACAO'], errors='coerce')
 
     # Config para visualizar todas as colunas
     pd.set_option('display.max_columns', None)
