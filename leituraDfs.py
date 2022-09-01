@@ -23,8 +23,7 @@ def leitura_dfs2020():
         del df1
 
         # Tratamento dos dados e povoamento do banco de dados
-        #povoar_banco(tratamento_dfs(df))
-        tratamento_dfs(df)
+        povoar_banco(tratamento_dfs(df))
 
         print(i)
         i += 1
@@ -48,8 +47,7 @@ def leitura_dfs2021():
         del df1
 
         # Tratamento dos dados e povoamento do banco de dados
-        #povoar_banco(tratamento_dfs(df))
-        tratamento_dfs(df)
+        povoar_banco(tratamento_dfs(df))
 
         print(i)
         i += 1
@@ -73,8 +71,7 @@ def leitura_dfs2022():
         del df1
 
         # Tratamento dos dados e povoamento do banco de dados
-        #povoar_banco(tratamento_dfs(df))
-        tratamento_dfs(df)
+        povoar_banco(tratamento_dfs(df))
 
         print(i)
         i += 1

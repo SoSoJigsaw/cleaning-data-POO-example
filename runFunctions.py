@@ -8,11 +8,8 @@ from sqlalchemy import create_engine
 #leitura_cabecalho2021()
 #leitura_cabecalho2022()
 
-#leitura_dfs2020()
-#leitura_dfs2021()
-#leitura_dfs2022()
+leitura_dfs2020()
+leitura_dfs2021()
+leitura_dfs2022()
 
-db = create_engine('postgresql://postgres:123456@[localhost]/db_iacit_api')
-
-print(db.execute(f"select exists(select 1 from estacao where cod_wmo='A865' and estacao_nome='LAGES')").scalar())
 

@@ -419,18 +419,18 @@ df['Data'] = df['Data'].dt.strftime("%d/%m/%Y")
 
 # Juntando a Data à Hora
 df["DATAHORA DE CAPTAÇÃO"] = df["Data"] + ' ' + df["Hora UTC"]
-df['DATAHORA DE CAPTAÇÃO'] = df['DATAHORA DE CAPTAÇÃO'].replace({'0000 UTC': '00:00:00', '0100 UTC': '01:00:00',
-                                                                 '0200 UTC': '02:00:00', '0300 UTC': '03:00:00',
-                                                                 '0400 UTC': '04:00:00', '0500 UTC': '05:00:00',
-                                                                 '0600 UTC': '06:00:00', '0700 UTC': '07:00:00',
-                                                                 '0800 UTC': '08:00:00', '0900 UTC': '09:00:00',
-                                                                 '1000 UTC': '10:OO:OO', '1100 UTC': '11:00:00',
-                                                                 '1200 UTC': '12:00:00', '1300 UTC': '13:OO:OO',
-                                                                 '1400 UTC': '14:00:00', '1500 UTC': '15:00:00',
-                                                                 '1600 UTC': '16:00:00', '1700 UTC': '17:00:00',
-                                                                 '1800 UTC': '18:00:00', '1900 UTC': '19:00:00',
-                                                                 '2000 UTC': '20:00:00', '2100 UTC': '21:00:00',
-                                                                 '2200 UTC': '22:00:00', '2300 UTC': '23:00:00',
+df['DATAHORA DE CAPTAÇÃO'] = df['DATAHORA DE CAPTAÇÃO'].replace({'0000 UTC': '00', '0100 UTC': '01',
+                                                                 '0200 UTC': '02', '0300 UTC': '03',
+                                                                 '0400 UTC': '04', '0500 UTC': '05',
+                                                                 '0600 UTC': '06', '0700 UTC': '07',
+                                                                 '0800 UTC': '08', '0900 UTC': '09',
+                                                                 '1000 UTC': '10', '1100 UTC': '11',
+                                                                 '1200 UTC': '12', '1300 UTC': '13',
+                                                                 '1400 UTC': '14', '1500 UTC': '15',
+                                                                 '1600 UTC': '16', '1700 UTC': '17',
+                                                                 '1800 UTC': '18', '1900 UTC': '19',
+                                                                 '2000 UTC': '20', '2100 UTC': '21',
+                                                                 '2200 UTC': '22', '2300 UTC': '23',
                                                                  }, regex=True)
 
 # Apagando colunas
@@ -463,11 +463,21 @@ df = df[['CODIGO (WMO)',
          'VENTO, RAJADA MAXIMA (m/s)',
          'VENTO, VELOCIDADE HORARIA (m/s)']]
 
-# Determinando como NaN valores em branco
-df.replace(r'^\s*$', np.nan, regex=True)
+# Apagando vírgulas em sequência errôneas
+df = df.replace({',,,,,,,,,,,,,': ''}, regex=True)
+df = df.replace({',,,,,,,,,,,,': ''}, regex=True)
+
+# Apagando vírgulas de valores floating
+df = df.replace({',': '.'}, regex=True)
+
+# Redeterminando valores Nan para NULL
+df.fillna("NULL", inplace=True)
+
+# Convertendo a datetime
+df['DATAHORA DE CAPTAÇÃO'] = pd.to_datetime(df['DATAHORA DE CAPTAÇÃO'], errors='raise', dayfirst=True)
 
 # Config para visualizar todas as colunas
 pd.set_option('display.max_columns', None)
 
-print(df.head(30))
+print(df.head(60))
 
