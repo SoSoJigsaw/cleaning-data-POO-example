@@ -118,16 +118,5 @@ df['DATAHORA DE CAPTAÇÃO'] = pd.to_datetime(df['DATAHORA DE CAPTAÇÃO'], erro
 # Config para visualizar todas as colunas
 pd.set_option('display.max_columns', None)
 
-df = df[['CODIGO (WMO)', 'RADIACAO GLOBAL (Kj/m²)', 'DATAHORA DE CAPTAÇÃO']]
-df = df.rename({'CODIGO (WMO)': 'cod_wmo', 'RADIACAO GLOBAL (Kj/m²)': 'radiacao_global',
-                 'DATAHORA DE CAPTAÇÃO': 'datahora_captacao'}, axis=1)
 
-df.to_csv(r"C:\Users\Felipe Sobral\Downloads\radiacao_global\radiacao.csv", index=False)
-
-db = create_engine('postgresql://postgres:123456@[localhost]/db_iacit_api')
-
-df.to_sql('radiacao_global', db, if_exists='append', index=False)
-
-#db.execute("COPY radiacao_global (cod_wmo, radiacao_global, datahora_captacao) FROM 'C:/Users/Felipe Sobral/Downloads/radiacao_global/radiacao.csv' WITH (FORMAT CSV)")
-
-# print(df.head(30))
+print(df.head(30))
