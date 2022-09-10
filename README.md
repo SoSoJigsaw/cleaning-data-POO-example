@@ -1,2 +1,2 @@
 # DfsIACIT
-Cleaning Data teste para o projeto IACIT
+Cleaning Data e conexão/povoamento do banco para o projeto IACIT em Python e PostgreSQL
